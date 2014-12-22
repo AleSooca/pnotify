@@ -10,7 +10,7 @@ right: 25px;
 position: absolute;
 height: auto;
 /* Ensures notices are above everything */
-z-index: 9999;
+z-index: 99999999999 !important;
 }
 /* Hides position: fixed from IE6 */
 html > body > .ui-pnotify {
@@ -53,4 +53,7 @@ right: auto;
 .ui-pnotify.stack-bottomright, .ui-pnotify.stack-bottomleft {
 bottom: 25px;
 top: auto;
+}
+.ui-pnotify-closer, .ui-pnotify-sticker{
+  float:right;
 }
