@@ -14,7 +14,11 @@ license GPL/LGPL/MPL
  * 	http://gnu.org/licenses/gpl.html
  * 	http://gnu.org/licenses/lgpl.html
  * 	http://mozilla.org/MPL/MPL-1.1.html
+ 
+ *  modified _Alz 20141222
  */
+
+
 
 // Uses AMD or browser globals for jQuery.
 (function (factory) {
@@ -346,9 +350,18 @@ license GPL/LGPL/MPL
 			this.runModules('beforeOpen');
 
 			var that = this;
-			// If the notice is not in the DOM, append it.
-			if (!this.elem.parent().length)
-				this.elem.appendTo(this.options.stack.context ? this.options.stack.context : body);
+			// If the notice is not in the DOM, append it. modified _Alz 20141222
+			if (!this.elem.parent().length){
+				if(this.options.stack.context.length > 0 ){
+					this.elem.appendTo(this.options.stack.context)
+				}
+				else if(this.options.stack.context.length == 0 && this.options.stack.context.selector.length > 0){
+					this.elem.appendTo($(this.options.stack.context.selector));
+				}
+				else{
+					this.elem.appendTo(body)
+				}
+			}//end _Alz
 			// Try to put it in the right position.
 			if (this.options.stack.push !== "top")
 				this.position(true);
